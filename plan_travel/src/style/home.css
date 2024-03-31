@@ -1,0 +1,263 @@
+body {
+  /* height: 100vh; */
+
+  background-color: rgb(233, 233, 233);
+}
+#top-div {
+  height: 100%;
+}
+main {
+  background-image: url("https://source.unsplash.com/BIk2ANMmNz4");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  /* height: 70vh; */
+  padding: 4rem;
+}
+#container {
+  /* border: 2px solid gray; */
+  background-color: darkgrey;
+  background-color: rgba(100, 100, 100, 0.181);
+  backdrop-filter: blur(6px);
+  height: 50vh;
+
+  border-radius: 20px;
+
+  display: flex;
+  padding: 2%;
+  justify-content: center;
+  align-items: center;
+}
+#text-container {
+  width: 50%;
+}
+#img-container {
+  display: flex;
+  width: 50%;
+  gap: 3px;
+}
+#img-container img {
+  height: 20vh;
+  width: 100%;
+  border-radius: 15px;
+}
+.img1 {
+  transform: translate(30px);
+}
+.img1:hover {
+  scale: 1.2;
+  z-index: 2;
+  /* transform: translateX(10px); */
+}
+.img2 {
+  transform: translate(0px);
+  z-index: 1;
+  scale: 1.1;
+}
+.img2:hover {
+  scale: 1.2;
+}
+.img3 {
+  transform: translate(-30px);
+}
+.img3:hover {
+  scale: 1.2;
+  z-index: 1;
+  transform: translate(-10px);
+}
+
+
+
+#travel-smarter {
+  /* height: 100%; */
+  margin-left: 4rem;
+  margin-right: 4rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-evenly; */
+  align-items: center;
+  position: relative;
+  background-color: white;
+  transform: translateY(-20px);
+  border-radius: 14%;
+}
+#travel-smarter h4 {
+  font-size: 16px;
+  color: rgb(101, 100, 100);
+}
+#travel-counter {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+
+  width: 100%;
+}
+
+#travel-counter div {
+  margin: 1rem;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 5px;
+  padding: 1rem;
+  box-shadow: 0px 0px 10px 2px rgb(210, 210, 210);
+}
+#travel-counter div h6 {
+  color: gray;
+  font-weight: 300;
+}
+
+#seamless-planning {
+  /* width: 100%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 4rem;
+  margin-right: 4rem;
+  gap: 3rem;
+}
+
+.seam-planning-text h4 {
+  font-size: 16px;
+  color: rgb(42, 42, 42);
+  font-weight: 400;
+}
+.seam-planning-img img {
+  height: 40vh;
+filter: contrast(1.4);
+  border-radius: 15px;
+}
+.seamless-planning-content {
+  margin-top: 2rem;
+}
+.seamless-planning-content .planning {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.seamless-planning-content .planning i {
+  margin-right: 1rem;
+  font-size: 25px;
+  color: chocolate;
+}
+.seamless-planning-content .planning h4 {
+  font-weight: 600;
+  /* color: black; */
+}
+.seamless-planning-content .planning p {
+  /* font-weight: 600; */
+  color: rgb(80, 80, 80);
+  font-size: 12px;
+}
+
+#need {
+  /* margin-left: 4rem; */
+  /* margin-right: 4rem; */
+  margin-top: 1.4rem;
+  /* margin-bottom: 1.4rem; */
+  background-color: white;
+  padding: 2rem;
+  box-shadow: 0px 0px 10px 2px rgb(210, 210, 210);
+
+  /* border-radius: 20px; */
+}
+#need h1{
+    font-weight: 700;
+}
+#need h4{
+    font-weight: 300;
+    font-size: 16px;
+}
+#need-explain{
+    margin: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    /* gap: 2rem; */
+}
+.explain{
+    width: 40%;
+    /* margin: 1rem; */
+}
+@media(max-width:600px){
+  main {
+    padding: 1.5rem;
+  }
+  #container {
+    height: 50%;
+    padding: 2%;
+    margin-bottom: 20%;
+    margin-top: 10%;
+    background-color: rgba(0, 0, 0, 0.148);
+  }
+  #text-container {
+    width: 90%;
+    line-height: 10vw;
+  }
+  #img-container {
+    display: none;
+  }
+  #travel-smarter {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 50px;
+    padding: 1rem;
+    border-radius: 8%;
+    height:fit-content;
+  }
+  #travel-counter {
+   width: 100%;
+  }
+  
+  #travel-counter div {
+    margin: 0.3rem;
+    width: 80%;
+    border-radius: 5px;
+    padding: 0rem;
+  }
+  #seamless-planning {
+    margin-left: 2rem;
+    margin-right: 0rem;
+  }
+  .seam-planning-img img {
+    display:  none;
+  }
+  .seamless-planning-content {
+    margin-top: 2rem;
+  }
+  #need {
+    margin-top: 0rem;
+    padding: 1rem;
+    height: 90vh;
+  }
+  #need h1{
+      font-weight: 600;
+      font-size:25px;
+  }
+  #need h4{
+      font-weight: 300;
+      font-size: 15px;
+      margin-bottom: -15px;
+  }
+  #need-explain{
+      margin: 2rem;
+  }
+  .explain{
+      width: 100%;
+  }
+  .explain h5{
+    font-weight: 400;
+    margin: 1px;
+  }
+  .explain p{
+    line-height:3vh;
+    padding:8px;
+    font-size: 14px;
+    margin-bottom: 0vh;
+  }
+}

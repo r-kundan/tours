@@ -1,0 +1,31 @@
+
+.footer-info{
+ color: rgb(88, 86, 86);
+
+}
+.footer-div{
+    height: 80px;
+    background-color: rgb(245, 245, 245) !important;  
+      padding-bottom: 0rem;
+    padding-left: 0rem;
+    padding-right: 0rem;
+    box-shadow: 0px 0px 8px 1px rgb(177, 177, 177);
+    display: flex;
+    justify-content: center;
+}
+.footer-link{
+    color: black;
+}
+.footer-link:hover{
+    color: rgb(0, 53, 41);
+    font-weight: 900;
+}
+.icon{
+    font-size: 30px;
+    color: rgb(60, 60, 60);
+    margin-top: 4px;
+}
+.icon:hover{
+    color: rgb(0, 53, 41);
+       font-size: 25px;
+}
