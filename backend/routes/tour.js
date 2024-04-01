@@ -26,12 +26,6 @@ router.get("/alltours",wrapAsync(async (req,res)=>{
  }))
 
 
- //New Route
- router.get("/new",isLoggedIn,(req,res)=>{
-
-    //  res.render("listings/new.ejs")
- })
-
 
  // show route 
  router.get("/:id",wrapAsync(async (req,res)=>{
@@ -66,19 +60,9 @@ router.get("/alltours",wrapAsync(async (req,res)=>{
  }))
 
 
- //edit route
- router.get("/:id/edit",isLoggedIn, wrapAsync(async (req,res)=>{
- let {id}= req.params
- const tour = await Tours.findById(id)
- if(!tour){
-    req.flash("error","Tours you requested for does not exist")
-    res.redirect("/tours")
- }
-//  res.render("listings/edit.ejs",{tour})
- }))
 
  //update Route
- router.put("/api/tours/:id",isLoggedIn,
+ router.put("/api/tours/:id/edit",isLoggedIn,
  validateListing,
  wrapAsync(async (req,res)=>{
      let {id} = req.params

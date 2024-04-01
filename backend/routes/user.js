@@ -1,52 +1,27 @@
-const express = require("express")
-const router = express.Router();
-const User = require("../models/user.js");
-const wrapAsync = require("../utils/wrapAsync");
-const passport = require("passport");
-const { saveRedirectUrl } = require("../middleware.js");
+const router = require("express").Router();
+const { User, validate } = require("../models/user");
+const bcrypt = require("bcrypt");
 
+router.post("/users", async (req, res) => {
+	try {
+		const { error } = validate(req.body);
+		if (error)
+			return res.status(400).send({ message: error.details[0].message });
 
-router.get("/signup", (req, res) => {
-    res.render("users/signup.ejs")
-})
+		const user = await User.findOne({ email: req.body.email });
+		if (user)
+			return res
+				.status(409)
+				.send({ message: "User with given email already Exist!" });
 
-router.post("/signup", wrapAsync(async (req, res) => {
-    try {
-        let { username, email, password } = req.body;
-        const newUser = new User({ email, username })
-       const registeredUser = await User.register(newUser, password);
-       req.login(registeredUser,(err)=>{
-        if(err){
-            return next(err);}
-            req.flash("success", "user was registered");
-            res.redirect("/tours")
-        
-       })
-       
-    } catch (error) {
-        req.flash("error", error.message)
-        res.redirect("/signup")
-    }
-}))
+		const salt = await bcrypt.genSalt(Number(process.env.SALT));
+		const hashPassword = await bcrypt.hash(req.body.password, salt);
 
-// router.get("/login",(req,res)=>{
-//     res.render("users/login.ejs")
-// })
-
-router.post("/login",saveRedirectUrl,passport.authenticate("local",{failureRedirect:"/login",failureFlash:true}), wrapAsync(async (req, res) => {
-    req.flash("success", "Welcome back to wanderlust!");
-    let redirectUrl = res.locals.redirectUrl || "/tours";
-    res.redirect(redirectUrl)
-}))
-
-router.get("/logout",(req,res)=>{
-req.logout((err)=>{
-    if(err){
-        next(err);
-    }
-    req.flash("success","you are logged out")
-    res.redirect("/tours")
-})
-})
+		await new User({ ...req.body, password: hashPassword }).save();
+		res.status(201).send({ message: "User created successfully" });
+	} catch (error) {
+		res.status(500).send({ message: "Internal Server Error" });
+	}
+});
 
 module.exports = router;

@@ -8,6 +8,7 @@ const ExpressError = require("./utils/ExpressError.js")
 const tourRouter = require("./routes/tour.js")
 const reviewRouter = require("./routes/review.js")
 const userRouter = require("./routes/user.js")
+const logRouter = require("./routes/login.js")
 const cors = require("cors")
 
 
@@ -56,10 +57,6 @@ app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
 
-passport.use(new LocalStrategy(User.authenticate()))
-
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
 
 
 
@@ -71,10 +68,11 @@ app.use((req,res,next)=>{
 })
 
 
+app.use("/api/tours/users",userRouter)
+app.use("/api/tours/login",logRouter)
 
 app.use("/api/tours",tourRouter);
 app.use("/tours/:id/reviews",reviewRouter)
-// app.use("/",userRouter)
 
 app.all("*", (req,res,next)=>{
     next(new ExpressError(404,"page not found!"))
