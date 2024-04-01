@@ -79,3 +79,71 @@ border-radius: 20px;
     font-weight: 700;
     scale: 1.05;
 }
+
+@media(max-width:1300px){
+
+
+    .title{
+        font-size: 1rem;
+    }
+    .img{
+        border-radius: 20px;
+        height: 250px;
+        width: 400px;
+    }
+ 
+
+}
+
+@media(max-width:800px){
+    .main{
+        width: 100%;
+    }
+    .detaillMain{
+        width: 100%;
+        border-radius: 0px;
+    }
+    .tourMain{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .title{
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+    .img{
+        border-radius: 20px;
+        height: 150px;
+        width: 200px;
+    }
+    .description{
+        width: 70%;
+        margin: .2rem;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .place{
+        display: flex;
+        /* flex-direction: column; */
+        flex-wrap: wrap;
+        margin: .6rem;
+    
+    }
+    .button{
+        display: flex;
+        gap: 3rem;
+        
+    }
+    .edit{
+        width: 100px;
+  
+    }
+    .delete{
+        width: 100px;
+ 
+    }
+
+}
+

@@ -9,13 +9,14 @@ import TourDetails from './pages/TourDetails.jsx'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
 import Edit from './pages/Edit.jsx'
-// import SearchResultList from './pages/SearchResultList.jsx'
 
+
+const user = localStorage.getItem("token");
 
 const router = createBrowserRouter(
-  createRoutesFromElements(
   
-     <Route path='/' element={<Layout/>}>
+  createRoutesFromElements(
+    <Route path='/' element={<Layout/>}>
       <Route path='/' element={<Home/>} />
       <Route path='/tours' element={<Tours/>} />
       <Route path='/details/:id' element={<TourDetails/>} />
@@ -24,9 +25,11 @@ const router = createBrowserRouter(
       <Route path='/register' element={<Register/>}/>
       <Route path='/login' element={<Login/>}/>
 
-      {/* <Route path='/tour/search' element={<SearchResultList/>} /> */}
+
+
+
     </Route>
-   
+  
   )
 )
 

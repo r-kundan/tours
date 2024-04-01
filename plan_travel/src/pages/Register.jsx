@@ -1,53 +1,93 @@
-import React from 'react'
-import "../style/register.css"
+import { useState } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import styles from "../style/register.module.css";
 
-function Register() {
-  return (
-    <div className="main-container">
-      <div className="row   register"> 
-    <h1 className="col-10 ">Register on KundanVista's</h1>
-    <div className="col-10 ">
-        <form action="/signup" method="POST"
-        className="needs-validation" novalidate>
-            <div className="mb-3">
-                <label for="username" className="form-lable">Username</label>
-                <input
-                  type="text"
-                  name="username"
-                  id="username"
-                  placeholder="enter username"
-                  className="form-control"
-                  required
-                /><div className="invalid-feedback">username should be valid</div>
-              </div>
-              <div className="mb-3">
-                <label for="email" className="form-lable">Email</label>
-                <input
-                  type="text"
-                  name="email"
-                  id="email"
-                  placeholder="enter email"
-                  className="form-control"
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <label for="password" className="form-lable">Password</label>
-                <input
-                  type="text"
-                  name="password"
-                  id="password"
-                  placeholder="enter password"
-                  className="form-control"
-                  required
-                />
-              </div>
-              <button className="btn">SignUp</button>
-        </form>
-    </div>
-</div>
-    </div>
-  )
-}
+const Register = () => {
+	const [data, setData] = useState({
+		userName: "",
+		email: "",
+		password: "",
+	});
+	console.log(data.userName)
+	console.log(data.email)
+	console.log(data.password)
+	const [error, setError] = useState("");
+	const navigate = useNavigate();
 
-export default Register
+	const handleChange = ({ currentTarget: input }) => {
+		setData({ ...data, [input.name]: input.value });
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		try {
+			const { data: res } = await axios.post("/api/tours/users", data);
+			navigate("/login");
+			console.log(res.message);
+		} catch (error) {
+			if (
+				error.response &&
+				error.response.status >= 400 &&
+				error.response.status <= 500
+			) {
+				setError(error.response.data.message);
+			}
+		}
+	};
+
+	return (
+		<div className={styles.signup_container}>
+			<div className={styles.signup_form_container}>
+				
+				<div className={styles.right}>
+					<form className={styles.form_container} onSubmit={handleSubmit}>
+						<h1>Create Account</h1>
+						<input
+							type="text"
+							placeholder="User Name"
+							name="userName"
+							onChange={handleChange}
+							value={data.userName}
+							required
+							className={styles.input}
+						/>
+					
+						<input
+							type="email"
+							placeholder="Email"
+							name="email"
+							onChange={handleChange}
+							value={data.email}
+							required
+							className={styles.input}
+						/>
+						<input
+							type="password"
+							placeholder="Password"
+							name="password"
+							onChange={handleChange}
+							value={data.password}
+							required
+							className={styles.input}
+						/>
+						{error && <div className={styles.error_msg}>{error}</div>}
+						<button type="submit" className={styles.green_btn}>
+						Register
+						</button>
+					</form>
+				</div>
+				<div className={styles.left}>
+					<h1>Welcome Back</h1>
+					<Link to="/login">
+						<button type="button" className={styles.white_btn}>
+						Log In
+						</button>
+					</Link>
+				</div>
+			</div>
+		</div>
+	);
+};
+
+export default Register;

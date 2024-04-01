@@ -23,12 +23,7 @@ export default function Header() {
         <li className="nav-item">
           <Link className="nav-link active head-text" aria-current="page" to="/tours">Tours</Link>
         </li> 
-        <li className="nav-item">
-          <Link className="nav-link active head-text" aria-current="page" to="/mytrip">My Trips</Link>
-        </li> 
-        <li className="nav-item">
-          <Link className="nav-link active head-text" aria-current="page" to="/network">Network</Link>
-        </li> 
+     
        
       </ul>
       <div className="navbar-nav ms-auto">
@@ -37,8 +32,7 @@ export default function Header() {
       
           <Link className="nav-link" to="/login">Log in</Link>
           
-     
-          <Link className="nav-link" to="/logout">Logout</Link>  
+      
      
       
 

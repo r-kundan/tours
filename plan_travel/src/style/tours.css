@@ -3,34 +3,28 @@
     padding: 0%;
     box-sizing: border-box;
    text-decoration: none;
-
 }
-
-
 .main {
     width: 100%;
     background-color: rgb(211, 211, 211);
 }
-
 .container {
- 
+    
     display: flex;
-
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
-
 .container .tourMain {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+
 }
-
-
 .toursdata {
+
     width: 400px;
     height: 400px;
     box-shadow: 0px 0px 8px 5px rgb(177, 177, 177) !important;
@@ -51,7 +45,6 @@
 }
 
 .toursdata .title {
-
     font-style: italic;
     width: 250px;
     font-size: 1.2rem;
@@ -68,7 +61,6 @@
     box-shadow: 0px 0px 8px 5px rgb(177, 177, 177) !important;
     margin: .5rem;
     transition: all 2s ease;
-
 }
 
 .toursdata .img:hover {
@@ -78,18 +70,60 @@
 .toursdata .place {
     display: flex;
     width: 250px;
-    /* margin: 4px; */
 }
 
 .toursdata .place .location {
     margin: .6rem;
-    /* font-style: italic; */
     font-weight: 400;
     font-size: 15px;
 }
 
 .toursdata .place .country {
     margin: .6rem;
-    /* font-weight: 400; */
     font-size: 15px;
+}
+
+@media(max-width:600px){
+
+    .toursdata {
+        width: 250px;
+        height: 250px;
+        border-radius: 10px;
+    }
+    
+    
+    .toursdata .title {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        font-style: italic;
+        font-size: .8rem;
+    font-weight: 600;
+    }
+    
+    .toursdata .img {
+        width: 200px;
+        height: 150px;
+        border-radius: 15px;
+        box-shadow: 0px 0px 8px 5px rgb(177, 177, 177) !important;
+        margin: .5rem;
+    }
+ 
+    
+     .toursdata .place {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        width: 250px;
+    } 
+    
+    .toursdata .place .location {
+        margin: .4rem;
+        font-weight: 400;
+        font-size: 1rem;
+    }
+    
+    .toursdata .place .country {
+     display: none;
+    }
 }

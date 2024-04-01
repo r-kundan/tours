@@ -42,7 +42,6 @@ function Tours() {
     <div className="main">
       {loading && <h1>Loading....</h1>}
       {error && <h1>Something went wrong</h1>}
-      <h1>All tours listing: {tourData.length} </h1>
 
       {/* <input
         type="text"
