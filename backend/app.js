@@ -8,6 +8,7 @@ const ExpressError = require("./utils/ExpressError.js")
 const tourRouter = require("./routes/tour.js")
 const reviewRouter = require("./routes/review.js")
 const userRouter = require("./routes/user.js")
+const cors = require("cors")
 
 
 const session = require("express-session")
@@ -32,6 +33,8 @@ async function main() {
 app.use(express.urlencoded({extended:true}))
 // app.use(methodOverride("_method"))
 app.use(express.static(path.join(__dirname,"/public")))
+app.use(cors());
+
 
 const sessionOptions = {
     secret: "mysupersecretcode",
@@ -46,15 +49,13 @@ const sessionOptions = {
 }
 
 
-app.get("/",(req,res)=>{
-    res.send("hi ,I am root")
-})
 
 app.use(session(sessionOptions));
 app.use(flash())
 
 app.use(passport.initialize())
 app.use(passport.session())
+
 passport.use(new LocalStrategy(User.authenticate()))
 
 passport.serializeUser(User.serializeUser());
@@ -71,9 +72,9 @@ app.use((req,res,next)=>{
 
 
 
-app.use("/tours",tourRouter);
+app.use("/api/tours",tourRouter);
 app.use("/tours/:id/reviews",reviewRouter)
-app.use("/",userRouter)
+// app.use("/",userRouter)
 
 app.all("*", (req,res,next)=>{
     next(new ExpressError(404,"page not found!"))
@@ -82,11 +83,11 @@ app.all("*", (req,res,next)=>{
 app.use((err,req,res,next)=>{
     let {statusCode=500 , message="something went wrong"} = err;
     // res.render("error.ejs",{err})
-    res.status(statusCode).render("error.ejs",{err})
+    // res.status(statusCode).render("error.ejs",{err})
 next()
 })
 
-app.listen(8080,()=>{
+app.listen(8000,()=>{
     console.log("server is tours to part 8080")
 })
 

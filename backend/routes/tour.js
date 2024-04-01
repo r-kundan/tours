@@ -18,25 +18,42 @@ const validateListing = (req,res,next)=>{
 }
 
 // index Route 
-router.get("/",wrapAsync(async (req,res)=>{
+router.get("/alltours",wrapAsync(async (req,res)=>{
     const alltours = await Tours.find({})
-     res.render("listings/index.ejs",{alltours})
+   setTimeout(()=>{
+    res.send(alltours)
+   },1000)
  }))
+
+
  //New Route
  router.get("/new",isLoggedIn,(req,res)=>{
 
-     res.render("listings/new.ejs")
+    //  res.render("listings/new.ejs")
  })
+
+
  // show route 
  router.get("/:id",wrapAsync(async (req,res)=>{
      let {id} = req.params;
-     const tour = await Tours.findById(id).populate("reviews");
-     if(!tour){
-        req.flash("error","Tours you requested for does not exist")
-        res.redirect("/tours")
+     try {
+        const tourDetail = await Tours.findById(id);
+        console.log(tourDetail)
+        if(!tourDetail){
+           return res.status(404).json({ error: "Tour not found" });
+        }
+        setTimeout(()=>{
+           res.json(tourDetail);
+          },1000)
+     } catch (error) {
+        console.error("Error fetching tour detail:", error);
+        res.status(500).json({ error: "Internal server error" });
+  
      }
-     res.render("listings/show.ejs",{tour})
+   
  }))
+
+
  //create route
  router.post("/",isLoggedIn,
  validateListing
@@ -47,6 +64,8 @@ router.get("/",wrapAsync(async (req,res)=>{
  res.redirect("/tours")
  
  }))
+
+
  //edit route
  router.get("/:id/edit",isLoggedIn, wrapAsync(async (req,res)=>{
  let {id}= req.params
@@ -55,15 +74,16 @@ router.get("/",wrapAsync(async (req,res)=>{
     req.flash("error","Tours you requested for does not exist")
     res.redirect("/tours")
  }
- res.render("listings/edit.ejs",{tour})
+//  res.render("listings/edit.ejs",{tour})
  }))
 
  //update Route
- router.put("/:id",isLoggedIn,
+ router.put("/api/tours/:id",isLoggedIn,
  validateListing,
  wrapAsync(async (req,res)=>{
      let {id} = req.params
-     await Tours.findByIdAndUpdate(id,{...req.body.tour})
+     const { title, description, image, location, country, map } = req.body;
+     await Tours.findByIdAndUpdate( title, description, image, location, country, map )
      req.flash("success","Listing Updated!")
      res.redirect(`/tours/${id}`)
  }))

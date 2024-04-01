@@ -8,6 +8,7 @@ import Tours from './pages/Tours.jsx'
 import TourDetails from './pages/TourDetails.jsx'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
+import Edit from './pages/Edit.jsx'
 // import SearchResultList from './pages/SearchResultList.jsx'
 
 
@@ -18,8 +19,11 @@ const router = createBrowserRouter(
       <Route path='/' element={<Home/>} />
       <Route path='/tours' element={<Tours/>} />
       <Route path='/details/:id' element={<TourDetails/>} />
-      <Route path='/register' element={<Register/>} />
-      <Route path='/login' element={<Login/>} />
+      <Route path='/details/:id/edit' element={<Edit/>}/>
+
+      <Route path='/register' element={<Register/>}/>
+      <Route path='/login' element={<Login/>}/>
+
       {/* <Route path='/tour/search' element={<SearchResultList/>} /> */}
     </Route>
    

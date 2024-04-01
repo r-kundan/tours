@@ -1,25 +1,24 @@
 import React, { useState, useEffect } from "react";
 
 import axios from "axios";
-// import "../style/tours.css";
-import { Link,useParams } from "react-router-dom";
+import "../style/tourDetails.css";
+import { Link, useParams } from "react-router-dom";
 
 function TourDetails() {
   const { id } = useParams();
   const [tourDetail, settourDetail] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
- 
 
   useEffect(() => {
-    const controller = new AbortController()
-    ;(async () => {
+    const controller = new AbortController();
+    (async () => {
       try {
         setLoading(true);
         setError(false);
-        const tourDetail = await axios.get(`/api/tours/${id}`,
-          { signal: controller.signal }
-        );
+        const tourDetail = await axios.get(`/api/tours/${id}`, {
+          signal: controller.signal,
+        });
         console.log(tourDetail.data);
         settourDetail(tourDetail.data);
         setLoading(false);
@@ -38,31 +37,35 @@ function TourDetails() {
   }, []);
 
   return (
-    <div className="">
-      <h1>Tour Detail: {tourDetail.length} </h1>
+    <div className="main">
       {loading && <h1>Loading....</h1>}
       {error && <h1>Something went wrong</h1>}
 
-      <div className="">
-       
-          <div key={tourDetail._id} className="tourMain">
+      <div className="detaillMain">
+        <div  className="tourMain">
+          <h1 className="title">{tourDetail.title}</h1>
+          <img className="img" src={tourDetail.image} alt="" />
+          <p className="description ">{tourDetail.description}</p>
+          <div className="place">
+            <h5 className="">{tourDetail.location} ,</h5>
 
-            <Link  className="nav-link" to={`/details`}>
-            <div className="">
-              <h1 className="">{tourDetail.title}</h1>
-              <p>{tourDetail.description}</p>
-              <img className="img" src={tourDetail.image} alt="" />
-              <div className="">
-                <h5 className="">{tourDetail.location} ,</h5>
-
-                <h5 className="">{tourDetail.country}</h5>
-              </div>
-            </div></Link>
+            <h5 className="">{tourDetail.country} :-</h5>
+        <Link to={tourDetail.map}>Map Location</Link>
           </div>
-          <Link to={tourDetail.map} >Map Location</Link>
+         <div className="button">
+         <Link to="/details/:id/edit">
+            <button className="edit">Edit</button>
+          </Link>
+          <Link>
+          <button className="delete">Delete</button></Link>
+         </div>
+         <hr />
+
+        </div>
+        
       </div>
     </div>
   );
 }
 
-export default TourDetails
+export default TourDetails;

@@ -27,8 +27,8 @@ function Login() {
                   className="form-control"
                   required
                   value={username}
-          onChange={(e) => setUsername(e.target.value)}
-
+                  onChange={(e) => setUsername(e.target.value)}
+                  
                 />
              </div>
               <div className="mb-3">

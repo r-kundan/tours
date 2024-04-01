@@ -143,7 +143,7 @@ function Home() {
     </h5>
     <p>Absolutely! Edit and customize your itinerary anytime to reflect changes or new inspirations in your travel plans.
 
-</p>
+   </p>
   </div>
   <div  className="explain">
     <h5>
