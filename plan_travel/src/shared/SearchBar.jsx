@@ -26,7 +26,7 @@ const searchHandler = ()=>{
     <Form className='search-form'>
         <FormGroup className='search-formgroup'>
             <span>
-            <i class="fa-solid fa-location-dot"></i> &nbsp;&nbsp; <h6>Location</h6>
+            <i className="fa-solid fa-location-dot"></i> &nbsp;&nbsp; <h6>Location</h6>
             </span>
           
                
@@ -35,7 +35,7 @@ const searchHandler = ()=>{
         </FormGroup>
         <FormGroup>
             <span>
-            <i class="fa-solid fa-people-arrows"></i>&nbsp;&nbsp;
+            <i className="fa-solid fa-people-arrows"></i>&nbsp;&nbsp;
              <h6>Distance</h6>
             </span>
          
@@ -46,7 +46,7 @@ const searchHandler = ()=>{
         <FormGroup>
             <span>
          
-            <i class="fa-solid fa-people-group"></i>&nbsp;&nbsp;<h6>Max People</h6>
+            <i className="fa-solid fa-people-group"></i>&nbsp;&nbsp;<h6>Max People</h6>
             </span>
        
                 <input type="number" placeholder='1' ref={maxpeopleRef}/>
@@ -54,7 +54,7 @@ const searchHandler = ()=>{
         </FormGroup>
         <span className='search-icon' onClick={searchHandler} type="
         submit" >
-<i class="fa-solid fa-magnifying-glass-location"></i>
+<i className="fa-solid fa-magnifying-glass-location"></i>
         </span>
     </Form>
 </div>

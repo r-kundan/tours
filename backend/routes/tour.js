@@ -48,33 +48,22 @@ router.get("/alltours",wrapAsync(async (req,res)=>{
  }))
 
 
- //create route
- router.post("/",isLoggedIn,
- validateListing
- ,wrapAsync(async (req,res,next)=>{
-     const newTour = new Tours(req.body.listing);
- await newTour.save()
- req.flash("success", "New listing created")
- res.redirect("/tours")
- 
- }))
 
 
 
  //update Route
- router.put("/api/tours/:id/edit",isLoggedIn,
+ router.put("/edit",isLoggedIn,
  validateListing,
  wrapAsync(async (req,res)=>{
      let {id} = req.params
      const { title, description, image, location, country, map } = req.body;
-     await Tours.findByIdAndUpdate( title, description, image, location, country, map )
-     req.flash("success","Listing Updated!")
-     res.redirect(`/tours/${id}`)
+     await Tours.findByIdAndUpdate({id}, title, description, image, location, country, map )
  }))
- //delete route
+//  delete route
  router.delete("/:id",wrapAsync(async(req,res)=>{
      let {id} = req.params 
      await Tours.findByIdAndDelete(id)
-     res.redirect("/tours")
+    
  }))
+
  module.exports = router;

@@ -35,6 +35,9 @@ function TourDetails() {
       controller.abort();
     };
   }, []);
+  const deleteuser = (id)=>{
+    alert("deleted")
+  }
 
   return (
     <div className="main">
@@ -57,7 +60,7 @@ function TourDetails() {
             <button className="edit">Edit</button>
           </Link>
           <Link>
-          <button className="delete">Delete</button></Link>
+          <button className="delete" onClick={()=>deleteuser(id)}>Delete</button></Link>
          </div>
          <hr />
 

@@ -23,6 +23,7 @@ export default function Header() {
         <li className="nav-item">
           <Link className="nav-link active head-text" aria-current="page" to="/tours">Tours</Link>
         </li> 
+        
      
        
       </ul>

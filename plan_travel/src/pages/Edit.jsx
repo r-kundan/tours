@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {Form} from "reactstrap"
 import axios from 'axios';
+import "../style/edit.css"
 
 
 
@@ -17,7 +18,7 @@ function Edit() {
         e.preventDefault();
     
         try {
-          const response = await axios.post(`/api/tours/${id}`, {
+          const response = await axios.put("/api/tours/edit", {
             title,
             description,
             image,
@@ -34,9 +35,9 @@ function Edit() {
     
 
   return (
-    <div>
-        <div>
-            <Form action="/details/:id/edit"  onSubmit={handleSubmit} method="POST">
+    <>
+        <div className='main'>
+            <Form action="/details/:id/edit"  onSubmit={handleSubmit} method="PUT">
             <div>
                 <label htmlFor="title" className="form-lable">Title</label>
                 <input
@@ -116,7 +117,7 @@ function Edit() {
               <button type='submit' className="edit">Edit</button>
             </Form>
         </div>
-    </div>
+    </>
   )
 }
 
