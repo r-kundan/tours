@@ -12,7 +12,7 @@ function Tours() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    const controller = new AbortController()
+    const controller = new AbortController() //it helps to cancel the old querys
     ;(async () => {
       try {
         setLoading(true);
@@ -25,6 +25,7 @@ function Tours() {
         settourData(response.data);
         setLoading(false);
       } catch (error) {
+        //this "if " stateent related to controller
         if (axios.isCancel(error)) {
           console.log("Request canceld", error.message);
           return;
@@ -33,6 +34,9 @@ function Tours() {
         setLoading(false);
       }
     })();
+
+
+    // this is cleanUP method 
     return () => {
       controller.abort();
     };
